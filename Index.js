@@ -8,7 +8,6 @@ const RestaurantRoutes = require('./Routes/RestaurantRoutes');
 const MenuRoutes = require('./Routes/MenuRoutes');
 const FeedbackRoutes = require('./Routes/FeedbackRoutes');
 const PreferenceRoutes = require('./Routes/PreferenceRoutes');
-// const SimilarItemRoutes = require('./Routes/SimilarItemRoutes');
 
 const app = express();
 const port = 8080;
@@ -30,7 +29,6 @@ app.use('/api', RestaurantRoutes);
 app.use('/api', MenuRoutes);
 app.use('/api', FeedbackRoutes);
 app.use('/api', PreferenceRoutes);
-// app.use('/api', SimilarItemRoutes);
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
