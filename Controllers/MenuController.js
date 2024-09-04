@@ -28,7 +28,7 @@ exports.addMenu = async (req, res) => {
             'INSERT INTO menu (restaurant_id, Item_name, Description, Price, Image) VALUES (?, ?, ?, ?, ?)',
             [restaurant_id, Item_name, Description, Price, image]
         );
-        res.status(201).json({ message: 'Restaurant added successfully', id: result.insertId });
+        res.status(201).json({ message: 'MenuItem added successfully', id: result.insertId });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: 'An error occurred while adding the menu item.' });
