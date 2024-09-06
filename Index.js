@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const { pool } = require('./db');
@@ -29,6 +30,7 @@ app.use('/api', RestaurantRoutes);
 app.use('/api', MenuRoutes);
 app.use('/api', FeedbackRoutes);
 app.use('/api', PreferenceRoutes);
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
