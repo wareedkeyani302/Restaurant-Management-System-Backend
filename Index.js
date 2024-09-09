@@ -11,7 +11,7 @@ const FeedbackRoutes = require('./Routes/FeedbackRoutes');
 const PreferenceRoutes = require('./Routes/PreferenceRoutes');
 
 const app = express();
-const port = 8080;
+const port = 8081;
 
 app.use((req, res, next) => {
     if (!pool) {
