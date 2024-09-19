@@ -1,4 +1,4 @@
-const {pool} = require('../db');
+const { pool } = require('../db');
 
 exports.getMenuByRestaurant = async (req, res) => {
     const { restaurant_id, user_id } = req.params;
