@@ -33,7 +33,7 @@ async function updateRecommendations(user_id, menu_id) {
         const { restaurant_id, Item_name, Description } = menuItem[0];
 
         const [similarItems] = await pool.query(
-            'SELECT * FROM menu WHERE restaurant_id != ? AND (Item_name LIKE ? OR Description LIKE ?) LIMIT 5',
+            'SELECT * FROM menu WHERE restaurant_id != ? AND (Item_name LIKE ? OR Description LIKE ?) LIMIT 10',
             [restaurant_id, `%${Item_name}%`, `%${Description}%`]
         );
 
