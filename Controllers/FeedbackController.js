@@ -47,3 +47,55 @@ async function updateRecommendations(user_id, menu_id) {
         console.error('Error updating recommendations:', error);
     }
 }
+
+// exports.gettRatedMenuItem = async (req, res) => {
+//     try {
+//         const [results] = await pool.query(`
+//             SELECT 
+//                 f.Rating, 
+//                 f.Comment, 
+//                 m.Item_name, 
+//                 m.Description, 
+//                 m.Price, 
+//                 m.Image 
+//             FROM Feedback f
+//             JOIN Menu m ON f.menu_id = m.id
+//             WHERE f.menu_id IS NOT NULL
+//         `);
+
+//         if (results.length === 0) {
+//             return res.status(404).json({ message: 'No rated menu items found.' });
+//         }
+
+//         res.status(200).json(results);
+//     } catch (error) {
+//         console.error('Error fetching rated menu items:', error);
+//         res.status(500).json({ error: 'An error occurred while fetching rated menu items.' });
+//     }
+// }
+
+exports.gettRatedMenuItem = async (req, res) => {
+    try {
+        const [results] = await pool.query(`
+            SELECT 
+                MAX(f.Rating) AS Rating, 
+                m.Item_name, 
+                m.Description, 
+                m.Price, 
+                m.Image 
+            FROM Feedback f
+            JOIN Menu m ON f.menu_id = m.id
+            WHERE f.menu_id IS NOT NULL
+            GROUP BY m.id
+        `);
+
+        if (results.length === 0) {
+            return res.status(404).json({ message: 'No rated menu items found.' });
+        }
+
+        res.status(200).json(results);
+    } catch (error) {
+        console.error('Error fetching rated menu items:', error);
+        res.status(500).json({ error: 'An error occurred while fetching rated menu items.' });
+    }
+}
